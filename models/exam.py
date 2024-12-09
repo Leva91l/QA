@@ -4,7 +4,7 @@ import datetime
 from models.groups import Group
 from models.subjects import Subject
 from models.teachers import Teacher
-from models.tickets import Tickets
+from models.tickets import TicketGenerator
 
 
 class Exam:
@@ -16,16 +16,18 @@ class Exam:
         self.subject = subject
         self.teacher = teacher
         self.group = group
+        print(len(self.group.students))
 
         if self.subject.title not in teacher.subjects:
             raise ValueError("Subject not found in teacher's subjects")
 
     def spend_exam(self):
         student_ticket_dict = {}
-        ticket = Tickets(self.subject)
+        ticket_generator = TicketGenerator(self.group)
 
-        for student in self.group:
-            student_ticket_dict[student] = next(next(ticket))
+        for student in self.group.students:
+            for ticket in ticket_generator.generate_tickets():
+                student_ticket_dict[student] = ticket.question
 
         with open(f'{self.EXAM_FILES}Экзамен по {self.subject}, {self.EXAM_DATE}, {self.group}.csv', 'w',
                   newline='\n') as csvfile:

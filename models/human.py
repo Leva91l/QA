@@ -8,4 +8,4 @@ class Human:
         return self.first_name
 
     def __repr__(self):
-        return self.first_name
+        return str(self)

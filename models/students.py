@@ -65,4 +65,4 @@ class Student(Human):
 
     def __hash__(self):
         index = random.randint
-        return hash(index)
+        return hash(f'{self.first_name}{self.last_name}{self.age}')

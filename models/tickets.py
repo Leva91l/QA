@@ -1,31 +1,17 @@
-import random
+from faker import Faker
+
+fake = Faker()
 
 
-class Tickets:
-    EXAM_TICKETS = {
-        'math': 'tickets/math',
-        'biology': 'tickets/biology',
-        'russian': 'tickets/russian',
-    }
+class Ticket:
+    def __init__(self, question):
+        self.question = question
 
-    def __init__(self, subject):
-        self.number = 1
-        self.subject = subject
 
-    def __iter__(self):
-        return self
+class TicketGenerator:
+    def __init__(self, group):
+        self.group = len(group)
 
-    def __next__(self):
-        try:
-            with open(f'{self.EXAM_TICKETS[str(self.subject)]}', 'r') as f:
-                lines = f.readlines()
-                index = random.randint(0, len(lines) - 1)
-                yield lines[index][:-1]
-        except FileNotFoundError:
-            raise ValueError(f'{self.subject} not found.')
-
-    def __repr__(self):
-        return self.number
-
-    def __str__(self):
-        return self.number
+    def generate_tickets(self):
+        for i in range(self.group):
+            yield Ticket(fake.text(max_nb_chars=20))
