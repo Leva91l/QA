@@ -15,7 +15,6 @@ login_help = "//*[contains(@class, 'mw-userlogin-help')]//a"#То есть см�
 #класс целиком - mw-htmlform-field-HTMLInfoField mw-form-related-link-container mw-userlogin-help cdx-field
 #я указываю только как бы логическую для этого элемента часть(помощь с логином - mw-userlogin-help). Потому-что все остальное может измениться. Правильно понял?
 #но в следующем локаторе как раз нет этой логической части в атрибуте
-pass_reset = "//div[@class='mw-htmlform-field-HTMLInfoField mw-form-related-link-container cdx-field']//div//a"#здесь класс почти точно такой же
+pass_reset = "//div[contains(@class, 'mw-form-related-link-container') and not(contains(@class, 'mw-userlogin-help'))]//a"#здесь класс почти точно такой же
 #mw-htmlform-field-HTMLInfoField mw-form-related-link-container cdx-field
-#тогда здесь как, целиком только, правильно?
 join = "//*[@id='mw-createaccount-join']"#адаптирован
