@@ -10,8 +10,8 @@ class Ticket:
 
 class TicketGenerator:
     def __init__(self, group):
-        self.group = len(group)
+        self.group = group
 
     def generate_tickets(self):
-        for i in range(self.group):
+        for i in range(len(self.group)):
             yield Ticket(fake.text(max_nb_chars=20))
