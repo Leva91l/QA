@@ -1,0 +1,4 @@
+.idea/
+__pycache__/
+faker_module.py
+exam_results/
